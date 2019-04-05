@@ -2,8 +2,9 @@
 // (number, question, answer, resource)
 
 class Item {
-    constructor(number, question, answer, resource){
+    constructor(number, next, question, answer, resource){
         this.number = number;
+        this.next = next;
         this.question = question;
         this.answer = answer;
         this.resource = resource;
@@ -18,6 +19,7 @@ class Item {
             <button class="incorrect">Option D</button>
              `);
     };
+
     loadQuestion = () => {
         $(`.main`).empty();
         $(`.main`).append(`<div class="question"> ${this.question}</div>`);
@@ -27,6 +29,8 @@ class Item {
         $('body').on(`click`, '.correct', () => {
         $(`.main`).empty();
         $(`.main`).append(`${this.answer}`);
+        $(`.footer`).empty();
+        $(`.footer`).append(`<button class="next-button">Next Question</button>`)
     });
     };
 
@@ -34,6 +38,7 @@ class Item {
         $('body').on(`click`, '.incorrect', () => {
         $(`.main`).empty();
         $(`.main`).append(`${this.resource}`);
+        $(`.footer`).empty();
         $(`.footer`).append(`<button class="next-button">Next Question</button>`)
         $(`body`).on()
     });
@@ -43,11 +48,11 @@ class Item {
 
 // OBJECT INSTANCES!
 
-const one = new Item(1, "What is your favorite color?", "blue", "video");
-const two = new Item(2, "What is your favorite sport?", "soccer", "article");
-const three = new Item(3, "What is your favorite hobby?", "drawing", "comic");
-const four = new Item(4, "What is your favorite movie?", "movie", "poster");
-const five = new Item(5, "What is your favorite Spice Girl?", "Scary", "image");
+const one = new Item(1, 2, "What is your favorite color?", "blue", "video");
+const two = new Item(2, 3, "What is your favorite sport?", "soccer", "article");
+const three = new Item(3, 4, "What is your favorite hobby?", "drawing", "comic");
+const four = new Item(4, 5, "What is your favorite movie?", "movie", "poster");
+const five = new Item(5, 6, "What is your favorite Spice Girl?", "Scary", "image");
 
 // PSEUDOCODE
 // LANDING PAGE
@@ -71,17 +76,23 @@ const loadIntro = (name) => {
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
     </div>`);
-    $(`.footer`).append(`<button class="next-button">Begin</button>`);
+    $(`.footer`).append(`<button class="next-one">Begin</button>`);
 };
 
 
 // RENDERING EACH NEW QUESTION!
-$(`body`).on('click', `.next-button`, () => {
+$(`body`).on('click', `.next-one`, () => {
     one.loadOptions();
     one.loadQuestion();
     one.clickCorrect();
     one.clickIncorrect();
 });
 
+$(`body`).on('click', `.next-two`, () => {
+    two.loadOptions();
+    two.loadQuestion();
+    two.clickCorrect();
+    two.clickIncorrect();
+});
 
 
