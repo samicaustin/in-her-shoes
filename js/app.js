@@ -8,35 +8,80 @@ class Item {
         this.answer = answer;
         this.resource = resource;
     };
-    addButton=()=>{
-        console.log(`${this.number}`);
+   
+    loadOptions = () => {
+        $(`.footer`).empty();
+        $(`.footer`).append(`
+            <button class="correct">Option A</button>
+            <button class="incorrect">Option B</button>
+            <button class="incorrect">Option C</button>
+            <button class="incorrect">Option D</button>
+             `);
     };
+    loadQuestion = () => {
+        $(`.main`).empty();
+        $(`.main`).append(`<div class="question"> ${this.question}</div>`);
+    };
+
+    clickCorrect = () => {
+        $('body').on(`click`, '.correct', () => {
+        $(`.main`).empty();
+        $(`.main`).append(`${this.answer}`);
+    });
+    };
+
+    clickIncorrect = () => {
+        $('body').on(`click`, '.incorrect', () => {
+        $(`.main`).empty();
+        $(`.main`).append(`${this.resource}`);
+        $(`.footer`).append(`<button class="next-button">Next Question</button>`)
+        $(`body`).on()
+    });
+    };
+    
 };
 
+// OBJECT INSTANCES!
+
 const one = new Item(1, "What is your favorite color?", "blue", "video");
-console.log(one);
-
 const two = new Item(2, "What is your favorite sport?", "soccer", "article");
-console.log(two);
-
 const three = new Item(3, "What is your favorite hobby?", "drawing", "comic");
-console.log(three);
-
 const four = new Item(4, "What is your favorite movie?", "movie", "poster");
-console.log(four);
-
-
-// TESTING
-
-$('body').append(`<div class="test">testing: new div with class of test!</div>`);
-$('body').append(`<div class="item">${four.question}</div>`);
-
+const five = new Item(5, "What is your favorite Spice Girl?", "Scary", "image");
 
 // PSEUDOCODE
-// 1. On page load, landing page will prompt user to enter their name and to select 
-//  "Begin Game."
-// 2. A brief intro screen will appear that establishes the need/purpose for learning 
-//  about the topics the game will cover. Optional: preview of question and resource 
-// types as well.
-// 3. 
+// LANDING PAGE
+$('.main').append(`<div class="landing">Landing page text here.</div>`);
+$(`.footer`).append(`<input type="text" name="name" class="name-input" placeholder="What's your name?"/>`);
+$('.footer').append(`<button class="name-button">Enter</button>`);
+
+// make event listener on start button to load intro page
+let name;
+$('.name-button').on('click', () => {
+    name = $('.name-input').val();
+    loadIntro(name);
+});
+
+const loadIntro = (name) => {
+    $(`.footer`).empty();
+    $(`.landing`).replaceWith(`<div class="intro">
+        Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
+        Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
+        Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
+        Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
+        Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
+    </div>`);
+    $(`.footer`).append(`<button class="next-button">Begin</button>`);
+};
+
+
+// RENDERING EACH NEW QUESTION!
+$(`body`).on('click', `.next-button`, () => {
+    one.loadOptions();
+    one.loadQuestion();
+    one.clickCorrect();
+    one.clickIncorrect();
+});
+
+
 

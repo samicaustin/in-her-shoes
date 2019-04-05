@@ -1,14 +1,113 @@
+
+/* MAIN CSS SELECTORS */
 * {
     font-size: 14px
 }
 
+p {
+
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+a {
+    
+}
 
 
-.test {
-    background-color: lightblue;
+/* GRID STUFF */
+.grid {
+    display: grid;
+    grid-template-columns: auto;
+    width: 100%;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 50px 200px 50px;
+    grid-template-areas:
+    'a b c '
+    'a d c'
+    'a e c';
+    grid-gap: 5px;
+    background-color: lightgray;
+    padding: 20px
+  }
+
+.header {
+    background-color: gray;
+    grid-area: b
+}
+
+.left {
+    background-color: gray;
+    grid-area: a
+}
+
+.main {
+    background-color: gray;
+    grid-area: d
+}
+
+.footer {
+    background-color: gray;
+    grid-area: e
+}
+
+.right {
+    background-color: gray;
+    grid-area: c
+}
+
+
+/* C O N T E N T */
+/* REPEAT CONTENT */
+.question {
+    background-color: purple;
+}
+
+.answer {
+    background-color: green;
+}
+
+.resource {
+    background-color: orange;
+}
+
+
+
+/* UNIQUE CONTENT */
+
+.landing {
+    background-color: yellow;
+    grid-area: d
+}
+
+.intro {
+    grid-area: d
+}
+
+.results {
+
+}
+
+/* BUTTONS */
+
+button {
+    font-weight: bold
+}
+
+.begin-button {
     color: red
 }
 
-.item {
+.name-button {
     color: blue
+}
+
+.correct .incorrect {
+    color: white
 }
