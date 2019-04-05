@@ -9,7 +9,7 @@ class Item {
         this.answer = answer;
         this.resource = resource;
     };
-   
+
     loadOptions = () => {
         $(`.footer`).empty();
         $(`.footer`).append(`
@@ -43,8 +43,43 @@ class Item {
         $(`body`).on()
     });
     };
+    loadNext = () => {
+        if (this.next === 2) {
+            $(`body`).on('click', `.next-button`, () => {
+                two.loadOptions();
+                two.loadQuestion();
+                two.clickCorrect();
+                two.clickIncorrect();
+                two.loadNext();
+                }
+            )} else if (this.next === 3) {
+            $(`body`).on('click', `.next-button`, () => {
+                three.loadOptions();
+                three.loadQuestion();
+                three.clickCorrect();
+                three.clickIncorrect();
+                three.loadNext();
+                }
+            )} else if (this.next === 4) {
+            $(`body`).on('click', `.next-button`, () => {
+                four.loadOptions();
+                four.loadQuestion();
+                four.clickCorrect();
+                four.clickIncorrect();
+                four.loadNext();
+                }
+            )} else if (this.next === 5) {
+            $(`body`).on('click', `.next-button`, () => {
+                five.loadOptions();
+                five.loadQuestion();
+                five.clickCorrect();
+                five.clickIncorrect();
+                five.loadNext();
+                }
+            )};
+            };
     
-};
+    };
 
 // OBJECT INSTANCES!
 
@@ -76,23 +111,64 @@ const loadIntro = (name) => {
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
     </div>`);
-    $(`.footer`).append(`<button class="next-one">Begin</button>`);
+    $(`.footer`).append(`<button class="next-button">Begin</button>`);
 };
 
 
-// RENDERING EACH NEW QUESTION!
-$(`body`).on('click', `.next-one`, () => {
+
+// RENDERING FIRST QUESTION
+$(`body`).on('click', `.next-button`, () => {
     one.loadOptions();
     one.loadQuestion();
     one.clickCorrect();
     one.clickIncorrect();
-});
-
-$(`body`).on('click', `.next-two`, () => {
-    two.loadOptions();
-    two.loadQuestion();
-    two.clickCorrect();
-    two.clickIncorrect();
+    one.loadNext();
 });
 
 
+// One day the below will be refractured into the class and it'll be so beautiful 
+
+
+// $(`body`).on('click', `.next-two`, () => {
+//     two.loadOptions();
+//     two.loadQuestion();
+//     two.clickCorrect();
+//     two.clickIncorrect();
+// });
+
+// $(`body`).on('click', `.next-three`, () => {
+//     three.loadOptions();
+//     three.loadQuestion();
+//     three.clickCorrect();
+//     three.clickIncorrect();
+// });
+
+// $(`body`).on('click', `.next-four`, () => {
+//     four.loadOptions();
+//     four.loadQuestion();
+//     four.clickCorrect();
+//     four.clickIncorrect();
+// });
+
+// $(`body`).on('click', `.next-five`, () => {
+//     five.loadOptions();
+//     five.loadQuestion();
+//     five.clickCorrect();
+//     five.clickIncorrect();
+// });
+
+
+
+
+// // RENDERING EVERY OTHER QUESTION BUT THE LAST ONE ==> hoping to add this as a method using
+// "next" attribute, but not sure how to pull off quite yet
+
+// loadNext = () => {
+//     $(`body`).on('click', `.next`, () => {
+//         console.log(`${this.next}`);
+//         // this.loadOptions();
+//         // this.loadQuestion();
+//         // this.clickCorrect();
+//         // this.clickIncorrect();
+//     });
+// };
