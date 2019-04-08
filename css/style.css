@@ -1,15 +1,27 @@
 
 /* MAIN CSS SELECTORS */
 * {
-    font-size: 14px
+    font-size: 14px;
+    text-align: center;
+    font-family: 'BioRhyme', serif
+}
+
+
+
+header {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-family: 'Bungee Shade', cursive;
+    color: #55667C
 }
 
 p {
-
+font-size: 14px
 }
 
 h1 {
-
+    font-weight: bold;
+    font-size: 20px
 }
 
 h2 {
@@ -27,62 +39,73 @@ a {
     grid-template-columns: auto;
     width: 100%;
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 50px 200px 50px;
+    grid-template-rows: 100px 300px 20px;
     grid-template-areas:
     'a b c '
     'a d c'
     'a e c';
-    grid-gap: 5px;
-    background-color: lightgray;
-    padding: 20px
+    margin: 20px;
+    grid-gap: 15px;
+    padding: 30px;
   }
 
 .header {
-    background-color: gray;
     grid-area: b
+    
 }
 
 .left {
-    background-color: gray;
-    grid-area: a
+    grid-area: a;
+    text-align: right;
+    margin: 10px;
+    padding: 10px;
 }
 
 .main {
-    background-color: gray;
-    grid-area: d
+    background-color: #55667C;
+    grid-area: d;
+    margin: 20px;
+    padding: 20px;
+    color: white
 }
 
 .footer {
-    background-color: gray;
     grid-area: e
 }
 
 .right {
-    background-color: gray;
-    grid-area: c
+    grid-area: c;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
 }
 
 
 /* C O N T E N T */
 /* REPEAT CONTENT */
 .question {
-    background-color: purple;
+    font-size: 30px;
+    color: white
 }
 
 .answer {
-    background-color: green;
+    font-size: 30px;
+    color: white
 }
 
-.resource {
-    background-color: orange;
+.explanation {
+    font-size: 30px;
+    color: white
 }
 
-
+.points {
+    text-align: right
+}
 
 /* UNIQUE CONTENT */
 
 .landing {
-    background-color: yellow;
+    font-size: 35px;
     grid-area: d
 }
 
@@ -90,22 +113,22 @@ a {
     grid-area: d
 }
 
-.results {
-
-}
 
 /* BUTTONS */
 
 button {
-    font-weight: bold
+    font-weight: bold;
+    color: black;
+    font-size: 15px;
+    background-color: lightgray;
 }
 
-.next-button {
-    color: red
+.next-button, .begin-button {
+    
 }
 
 .name-button {
-    color: blue
+   
 }
 
 .correct .incorrect {
