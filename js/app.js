@@ -1,5 +1,11 @@
 // MATERIAL CLASSES BELOW
-// (number, question, answer, resource)
+let points = 0;
+addPoint = () => {
+    points++;
+    $(`.left`).empty();
+    $(`.left`).append(`Points: <div class="points">${points}</div>`);
+    console.log(points);
+};
 
 class Item {
     constructor(number, next, question, answer, resource){
@@ -22,15 +28,16 @@ class Item {
 
     loadQuestion = () => {
         $(`.main`).empty();
-        $(`.main`).append(`<div class="question"> ${this.question}</div>`);
+        $(`.main`).append(`<div class="question"> ${this.number} ${this.question}</div>`);
     };
 
     clickCorrect = () => {
         $('body').on(`click`, '.correct', () => {
+        addPoint();
         $(`.main`).empty();
         $(`.main`).append(`${this.answer}`);
         $(`.footer`).empty();
-        $(`.footer`).append(`<button class="next-button">Next Question</button>`)
+        $(`.footer`).append(`<button class="next-button">Next Question</button>`);
     });
     };
 
@@ -39,8 +46,7 @@ class Item {
         $(`.main`).empty();
         $(`.main`).append(`${this.resource}`);
         $(`.footer`).empty();
-        $(`.footer`).append(`<button class="next-button">Next Question</button>`)
-        $(`body`).on()
+        $(`.footer`).append(`<button class="next-button">Next Question</button>`);
     });
     };
     loadNext = () => {
@@ -81,13 +87,25 @@ class Item {
     
     };
 
-// OBJECT INSTANCES!
+   
+
+// OBJECT INSTANCES and ITEMS ARRAY TO LOOP THROUGH!
 
 const one = new Item(1, 2, "What is your favorite color?", "blue", "video");
 const two = new Item(2, 3, "What is your favorite sport?", "soccer", "article");
 const three = new Item(3, 4, "What is your favorite hobby?", "drawing", "comic");
 const four = new Item(4, 5, "What is your favorite movie?", "movie", "poster");
 const five = new Item(5, 6, "What is your favorite Spice Girl?", "Scary", "image");
+const six = new Item(6, 7, "Another question", "another answer", "another resource");
+const seven = new Item(7, 8, "question seven", "answer seven", "comic");
+const eight = new Item(8, 9, "eighth question", "eighth answer", "eighth resource");
+const nine = new Item(9, 10, "ninth question", "ninth answer", "article");
+const ten = new Item(10, 11, "tenth and final question", "tenth and final answer", "resource");
+
+let results = {
+    image: ""
+};
+const itemsArray = [one, two, three, four, five, six, seven, eight, nine, ten, results];
 
 // PSEUDOCODE
 // LANDING PAGE
@@ -111,64 +129,38 @@ const loadIntro = (name) => {
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
         Hello ${name}! Informational/contextual text here. Hello ${name}! Informational/contextual text here. 
     </div>`);
-    $(`.footer`).append(`<button class="next-button">Begin</button>`);
+    $(`.footer`).append(`<button class="begin-button">Begin</button>`);
+    loadFirst();
 };
 
 
 
 // RENDERING FIRST QUESTION
-$(`body`).on('click', `.next-button`, () => {
-    one.loadOptions();
-    one.loadQuestion();
-    one.clickCorrect();
-    one.clickIncorrect();
-    one.loadNext();
-});
+const loadFirst = () => {
+    $(`body`).on('click', `.begin-button`, () => {
+        $(`.left`).append(`Points: <div class="points">${points}</div>`);
+        one.loadOptions();
+        one.loadQuestion();
+        one.clickCorrect();
+        one.clickIncorrect();
+        one.loadNext();
 
-
-// One day the below will be refractured into the class and it'll be so beautiful 
-
-
-// $(`body`).on('click', `.next-two`, () => {
-//     two.loadOptions();
-//     two.loadQuestion();
-//     two.clickCorrect();
-//     two.clickIncorrect();
-// });
-
-// $(`body`).on('click', `.next-three`, () => {
-//     three.loadOptions();
-//     three.loadQuestion();
-//     three.clickCorrect();
-//     three.clickIncorrect();
-// });
-
-// $(`body`).on('click', `.next-four`, () => {
-//     four.loadOptions();
-//     four.loadQuestion();
-//     four.clickCorrect();
-//     four.clickIncorrect();
-// });
-
-// $(`body`).on('click', `.next-five`, () => {
-//     five.loadOptions();
-//     five.loadQuestion();
-//     five.clickCorrect();
-//     five.clickIncorrect();
-// });
+    });
+}
 
 
 
+// Loop through array eventually for DRY code. Get everything to work first!
 
-// // RENDERING EVERY OTHER QUESTION BUT THE LAST ONE ==> hoping to add this as a method using
-// "next" attribute, but not sure how to pull off quite yet
-
-// loadNext = () => {
-//     $(`body`).on('click', `.next`, () => {
-//         console.log(`${this.next}`);
-//         // this.loadOptions();
-//         // this.loadQuestion();
-//         // this.clickCorrect();
-//         // this.clickIncorrect();
-//     });
+// const test = (itemsArray) => {
+//     for (i = 0; i < itemsArray.length; i++){
+//         $(`body`).on('click', `.next-button`, () => {
+//             $(`.left`).append(`Points: <div class="points">${points}</div>`);
+//             this.loadOptions();
+//             this.loadQuestion();
+//             this.clickCorrect();
+//             this.clickIncorrect();
+//             this.loadNext();
+//         });
+//     }
 // };
