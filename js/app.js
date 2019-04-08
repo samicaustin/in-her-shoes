@@ -48,41 +48,86 @@ class Item {
         $(`.footer`).append(`<button class="next-button">Next Question</button>`);
     });
     };
+
     loadNext = () => {
         if (this.next === 2) {
             $(`body`).on('click', `.next-button`, () => {
-                two.loadOptions();
-                two.loadQuestion();
-                two.clickCorrect();
-                two.clickIncorrect();
-                two.loadNext();
-                }
-            )} else if (this.next === 3) {
+            two.loadOptions();
+            two.loadQuestion();
+            two.clickCorrect();
+            two.clickIncorrect();
+            two.loadNext();
+            }
+        )} else if (this.next === 3) {
             $(`body`).on('click', `.next-button`, () => {
-                three.loadOptions();
-                three.loadQuestion();
-                three.clickCorrect();
-                three.clickIncorrect();
-                three.loadNext();
-                }
-            )} else if (this.next === 4) {
+            three.loadOptions();
+            three.loadQuestion();
+            three.clickCorrect();
+            three.clickIncorrect();
+            three.loadNext();
+            }
+        )} else if (this.next === 4) {
             $(`body`).on('click', `.next-button`, () => {
-                four.loadOptions();
-                four.loadQuestion();
-                four.clickCorrect();
-                four.clickIncorrect();
-                four.loadNext();
-                }
-            )} else if (this.next === 5) {
+            four.loadOptions();
+            four.loadQuestion();
+            four.clickCorrect();
+            four.clickIncorrect();
+            four.loadNext();
+            }
+        )} else if (this.next === 5) {
             $(`body`).on('click', `.next-button`, () => {
-                five.loadOptions();
-                five.loadQuestion();
-                five.clickCorrect();
-                five.clickIncorrect();
-                five.loadNext();
+            five.loadOptions();
+            five.loadQuestion();
+            five.clickCorrect();
+            five.clickIncorrect();
+            five.loadNext();
+            }
+        )}  else if (this.next === 6) {
+            $(`body`).on('click', `.next-button`, () => {
+                six.loadOptions();
+                six.loadQuestion();
+                six.clickCorrect();
+                six.clickIncorrect();
+                six.loadNext();
                 }
-            )};
-            };
+        )} else if (this.next === 7) {
+            $(`body`).on('click', `.next-button`, () => {
+                seven.loadOptions();
+                seven.loadQuestion();
+                seven.clickCorrect();
+                seven.clickIncorrect();
+                seven.loadNext();
+                }
+        )}  else if (this.next === 8) {
+            $(`body`).on('click', `.next-button`, () => {
+                eight.loadOptions();
+                eight.loadQuestion();
+                eight.clickCorrect();
+                eight.clickIncorrect();
+                eight.loadNext();
+                }
+        )}else if (this.next === 9) {
+            $(`body`).on('click', `.next-button`, () => {
+                nine.loadOptions();
+                nine.loadQuestion();
+                nine.clickCorrect();
+                nine.clickIncorrect();
+                nine.loadNext();
+                }
+        )} else if (this.next === 10) {
+            $(`body`).on('click', `.next-button`, () => {
+                ten.loadOptions();
+                ten.loadQuestion();
+                ten.clickCorrect();
+                ten.clickIncorrect();
+                ten.loadNext();
+                }
+        )} else {
+            $(`body`).on('click', `.next-button`, () => {
+            loadResults();
+            }
+        )}; 
+    };
     
     };
     
@@ -103,10 +148,7 @@ const eight = new Item(8, 9, "eighth question", "eighth answer", "eighth resourc
 const nine = new Item(9, 10, "ninth question", "ninth answer", "article");
 const ten = new Item(10, 11, "tenth and final question", "tenth and final answer", "resource");
 
-let results = {
-    image: ""
-};
-const itemsArray = [one, two, three, four, five, six, seven, eight, nine, ten, results];
+const itemsArray = [one, two, three, four, five, six, seven, eight, nine, ten];
 
 // PSEUDOCODE
 // LANDING PAGE
@@ -147,7 +189,18 @@ const loadFirst = () => {
         one.loadNext();
 
     });
-}
+};
+
+// RESULTS
+const loadResults = () => {
+    $(`.main`).empty();
+    $(`.main`).text(`You earned a total of ${points} points out of a possible 10.`)
+    $(`.footer`).empty();
+    $(`.footer`).append(`<button class = "try-again">Try Again?</button>`);
+    $(`.footer`).on(`click`, `.try-again`, () => {
+        location.reload();
+    });
+};
 
 
 
