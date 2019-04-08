@@ -33,7 +33,6 @@ class Item {
 
     clickCorrect = () => {
         $('body').on(`click`, '.correct', () => {
-        addPoint();
         $(`.main`).empty();
         $(`.main`).append(`${this.answer}`);
         $(`.footer`).empty();
@@ -86,8 +85,10 @@ class Item {
             };
     
     };
-
-   
+    
+$('body').on(`click`, '.correct', () => {
+addPoint();
+});
 
 // OBJECT INSTANCES and ITEMS ARRAY TO LOOP THROUGH!
 
