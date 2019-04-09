@@ -90,8 +90,8 @@ class Item {
     loadQuestion = () => {
         $(`.main`).empty();
         $(`.main`).append(`<div class="question"> ${this.number}. ${this.question}</div>`);
-        $(`.topright`).empty();
-        $(`.topright`).append(`<br> Question: <br> ${this.number} of 10`);
+        $(`.right`).empty();
+        $(`.right`).append(`<br> Question: <br> ${this.number} of 10`);
     };
 
     clickCorrect = () => {
@@ -267,8 +267,8 @@ const loadIntro = (name) => {
 // RENDERING FIRST QUESTION
 const loadFirst = () => {
     $(`body`).on('click', `.begin-button`, () => {
-        $(`.topleft`).append(`Points: <div class="points">${points}</div>`);
-        $(`.topright`).append(`Question: <br> 1 of 10`);
+        $(`.left`).append(`Points: <div class="points">${points}</div>`);
+        $(`.right`).append(`Question: <br> 1 of 10`);
         one.loadOptions();
         one.loadQuestion();
         one.clickCorrect();

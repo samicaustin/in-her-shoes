@@ -93,15 +93,11 @@ a {
     color: white
 }
 
-.answer {
+.answer, .explanation {
     font-size: 14px;
     color: white
 }
 
-.explanation {
-    font-size: 30px;
-    color: white
-}
 
 .points {
     text-align: right
@@ -135,7 +131,7 @@ button {
     opacity: 1
 }
 
-.name-button, .begin-button{
+.name-button, .begin-button, .next-button, .try-again {
     border: 1px solid #55667C;
     color: #55667C;
     padding: 5px 12px;
