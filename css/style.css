@@ -158,7 +158,10 @@ button {
 }
 
 .name-input {
-    vertical-align: center
+    vertical-align: center;
+    padding: 5px 12px;
+    margin: 5px;
+    font-size: 10px
 }
 
 button:hover {

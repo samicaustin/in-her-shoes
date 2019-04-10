@@ -60,28 +60,30 @@ class Item {
         $(`.main`).empty();
         $(`.main`).append(`<div class="question"> ${this.number}. ${this.question}</div>`);
         $(`.right`).empty();
-        $(`.right`).append(`Scenario: <br> ${this.number} of 5`);
+        $(`.right`).append(`Question: <br> ${this.number} of 5`);
     };
 
     clickCorrect = () => {
         $('body').on(`click`, '.correct', () => {
+        console.log("correct--fade test");
         $(`.main`).empty();
         $(`.main`).append(`<div class="answer"><b>Correct.</b> <br>${this.answer}</div><br><br>${this.explanation}`);
         $(`.footer`).empty();
-        $(`.footer`).append(`<button class="next-button">Next Scenario</button>`);
+        $(`.footer`).append(`<button class="next-button">Next Question</button>`);
         $(`.topright`).empty();
-        $(`.topright`).append(`Scenario: <br> ${this.number} of 5`);
+        $(`.topright`).append(`Question: <br> ${this.number} of 5`);
     });
     };
 
     clickIncorrect = () => {
         $('body').on(`click`, '.incorrect', () => {
+        console.log("incorrect--fade test");
         $(`.main`).empty();
         $(`.main`).append(`<div class = "explanation"><b>Not quite.</b> <br><br>${this.explanation}</div>`);
         $(`.footer`).empty();
         $(`.footer`).append(`<button class="next-button">Next Question</button>`);
         $(`.topright`).empty();
-        $(`.topright`).append(`Scenario: <br> ${this.number} of 5`);
+        $(`.topright`).append(`Question: <br> ${this.number} of 5`);
     });
     };
 
@@ -127,16 +129,34 @@ class Item {
     
     };
     
+
+// doubles times fadeIn is called both within and outside of class??  
 $('body').on(`click`, '.correct', () => {
 addPoint();
+fadeIn();
 });
+
+$('body').on(`click`, '.incorrect', () => {
+    addPoint();
+    fadeIn();
+    });
+
+const fadeIn = () => {
+    $(".main").hide(0).delay(100).fadeIn(2000, function(){
+        return;
+    });
+    $(".footer").hide(0).delay(100).fadeIn(2000, function(){
+        return;
+    })
+};
+
 
 
 // OBJECT INSTANCES and ITEMS ARRAY TO LOOP THROUGH!
-const one = new Item(1, 2, "'J' is a Black woman who has been working as a highly-successful mid-level administrator at her company for four years. She works with a few other women, but at any given point in her day, she is the only person of color in the room. <br><br>She woke up this morning feeling extremely sick, but has an important presentation today. What will J do?", 
-"She will do her presentation and work even harder to compensate.", 
-"She will stay home and take care of herself--the presentation can be rescheduled!", 
-"She will go to work but take it easy so that she can recover more quickly.", 
+const one = new Item(1, 2, "'J' is a Black woman who has been working as a highly-successful mid-level administrator at her company for four years. She works with a few other women, but at any given point in her day, she is the only person of color in the room. <br><br>She woke up this morning feeling extremely sick, but has an important presentation today. What will 'J' probably do?", 
+"Go to work anyway and as hard as ever.", 
+"Stay home and take care of herself--the presentation can be rescheduled!", 
+"Go to work but take it easy so that she can recover more quickly.", 
 "'J', like many people who are the only person of a given race, gender, or sexuality at their workplace, feels extra pressure to preform. She says, 'I need to come across as more than proficient, more than competent, more than capable. <br><b>I have to be on all the time.</b>'");
 
 const two = new Item(2, 3, "‘L’ is a white lesbian who is the senior vice president at the company she’s served for over ten years. <br> <br> On any given day, how much more likely is it that she’ll hear someone say something demeaning about her or people like her than it is for a man?", 
@@ -200,7 +220,7 @@ const loadIntro = (name) => {
 const loadFirst = () => {
     $(`body`).on('click', `.begin-button`, () => {
         $(`.left`).append(`Points: <div class="points">${points}</div>`);
-        $(`.right`).append(`Scenario: <br> 1 of 5`);
+        $(`.right`).append(`Question: <br> 1 of 5`);
         one.loadOptions();
         one.loadQuestion();
         one.clickCorrect();
@@ -220,7 +240,7 @@ const loadResults = () => {
     Check out the 
     <a href="https://www.mckinsey.com/featured-insights/gender-equality/women-in-the-workplace-2018">
     Women in the Workplace 2018</a> report <br>and continue educating yourself, your peers, 
-    and your organization <br>on what we as professionals can do to make serious changes happen.`)
+    and your organization on what we as professionals can do to make serious changes happen.`)
     $(`.footer`).empty();
     $(`.footer`).append(`<button class = "try-again">Try Again?</button>`);
     $(`.footer`).on(`click`, `.try-again`, () => {
@@ -230,13 +250,10 @@ const loadResults = () => {
 
 
 
-
-
-
 // Loop through array eventually for DRY code. Get everything to work first!
 
 // Array for eventual refactoring:
-// const itemsArray = [one, two, three, four, five, six, seven, eight, nine, ten];
+// const itemsArray = [one, two, three, four, five];
 
 // const test = (itemsArray) => {
 //     for (i = 0; i < itemsArray.length; i++){
