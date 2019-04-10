@@ -20,7 +20,48 @@ class Item {
         this.explanation = explanation;
     };
 
-    // Figure out how to shuffle elements later--hardcoded for now.
+    // CURRENTLY figuring out shuffling--working in the codePen, now to implement here.
+    // current issue has to do with scope and sequence I believe--gets messy with event listeners
+//     loadOptions = () => {
+//         $('.footer').empty();
+//         $('.footer').append(`
+//          <div class = "options">
+//             <button class = "correct">${this.answer}</button>
+//             <button class = "incorrect">${this.option1}</button>
+//             <button class = "incorrect">${this.option2}</button>
+//          </div>`);
+//         shuffleElements( $('.options button') );
+//         shuffleElements = ($elements) => {
+//         var i, index1, index2, temp_val;
+    
+//         var count = $elements.length;
+//         var $parent = $elements.parent();
+//         var shuffled_array = [];
+    
+    
+//         // populate array of indexes
+//         for (i = 0; i < count; i++) {
+//             shuffled_array.push(i);
+//         }
+    
+//         // shuffle indexes
+//         for (i = 0; i < count; i++) {
+//             index1 = (Math.random() * count) | 0;
+//             index2 = (Math.random() * count) | 0;
+    
+//             temp_val = shuffled_array[index1];
+//             shuffled_array[index1] = shuffled_array[index2];
+//             shuffled_array[index2] = temp_val;
+//         }
+    
+//         // apply random order to elements
+//         $elements.detach();
+//         for (i = 0; i < count; i++) {
+//             $parent.append( $elements.eq(shuffled_array[i]) );
+//         }
+//     };
+// };
+    
     loadOptions = () => {
         $(`.footer`).empty();
         if (this.number === 1) {
@@ -130,14 +171,14 @@ class Item {
     };
     
 
-// doubles times fadeIn is called both within and outside of class??  
+// doubles times fadeIn is called both within and outside of class? When it's outside of the 
+// class, it doesn't keep reloading the fade, but it still logs the repeats.
 $('body').on(`click`, '.correct', () => {
 addPoint();
 fadeIn();
 });
 
 $('body').on(`click`, '.incorrect', () => {
-    addPoint();
     fadeIn();
     });
 
